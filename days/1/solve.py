@@ -22,7 +22,6 @@ l.sort()
 r.sort()
 
 for le, re in zip(l, r):
-    print(le, re)
     p1 += max(le, re) - min(le, re)
     p2 += le * r.count(le)
 
