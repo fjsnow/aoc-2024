@@ -1,18 +1,36 @@
-import sys
+with open("input", "r") as f:
+    input = "\n".join([l.rstrip("\n") for l in f.readlines()])
 
-if len(sys.argv) > 1 and sys.argv[1] == "-r":
-    with open("input", "r") as f:
-        input = [l.rstrip("\n") for l in f.readlines()]
-else:
-    input = """""".split("\n")
+rulesStr, updatesStr = [p.split("\n") for p in input.split("\n\n")]
+rules = [(rule.split("|")[0], rule.split("|")[1]) for rule in rulesStr]
+updates = [update.split(",") for update in updatesStr]
 
-total = 0
+p1, p2 = 0, 0
+for i, update in enumerate(updates):
+    log = []
+    order = True
+    for number in update:
+        for l in log:
+            if (number, l) in rules:
+                order = False
+                break
+        log.append(number)
+        if not order:
+            break
+    if order:
+        p1 += int(update[len(update) // 2])
+    else:
+        log, new = [], []
+        for number in update:
+            for li, l in enumerate(new):
+                if (number, l) in rules:
+                    new.insert(li, number)
+                    break
+            else:
+                new.append(number)
 
-for li, line in enumerate(input):
-    # for ci, char in enumerate(line):
-    #     pass
-    # for vi, val in enumerate(line.split("\n")):
-    #     pass
-    pass
+        p2 += int(new[len(new) // 2])
 
-print("total:", total)
+print("p1:", p1)
+print("p2:", p2)
+
