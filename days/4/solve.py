@@ -1,19 +1,5 @@
-import sys
-
-if len(sys.argv) > 1 and sys.argv[1] == "-r":
-    with open("input", "r") as f:
-        input = [l.rstrip("\n") for l in f.readlines()]
-else:
-    input = """.M.S......
-..A..MSMS.
-.M.S.MAA..
-..A.ASMSM.
-.M.S.M....
-..........
-S.S.S.S.S.
-.A.A.A.A..
-M.M.M.M.M.
-..........""".split("\n")
+with open("input", "r") as f:
+    input = [l.rstrip("\n") for l in f.readlines()]
 
 p1, p2 = 0, 0
 

@@ -1,10 +1,7 @@
-import sys, re
+import re
 
-if len(sys.argv) > 1 and sys.argv[1] == "-r":
-    with open("input", "r") as f:
-        input = [l.rstrip("\n") for l in f.readlines()]
-else:
-    input = """xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))""".split("\n")
+with open("input", "r") as f:
+    input = [l.rstrip("\n") for l in f.readlines()]
 
 p1, p2 = 0, 0
 enabled = True

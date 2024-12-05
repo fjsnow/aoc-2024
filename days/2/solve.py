@@ -1,15 +1,5 @@
-import sys
-
-if len(sys.argv) > 1 and sys.argv[1] == "-r":
-    with open("input", "r") as f:
-        input = [l.rstrip("\n") for l in f.readlines()]
-else:
-    input = """7 6 4 2 1
-1 2 7 8 9
-9 7 6 2 1
-1 3 2 4 5
-8 6 4 4 1
-1 3 6 7 9""".split("\n")
+with open("input", "r") as f:
+    input = [l.rstrip("\n") for l in f.readlines()]
 
 p1, p2 = 0, 0
 
