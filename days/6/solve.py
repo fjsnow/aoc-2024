@@ -7,8 +7,8 @@ ds = { "U": (-1, 0, "R"), "D": (1, 0, "L"), "R": (0, 1, "D"), "L": (0, -1, "U") 
 gs = next(((ri, ci) for ri, r in enumerate(grid) for ci, v in enumerate(r) if v == "^"))
 
 # p1
-g, d, v = gs, "U", set()
-v.add(g)
+g, d, vi = gs, "U", set()
+vi.add(g)
 while True:
     n = (g[0] + ds[d][0], g[1] + ds[d][1])
     if n[0] < 0 or n[0] > len(grid) - 1 or n[1] < 0 or n[1] > len(grid[n[0]]) - 1:
@@ -17,16 +17,17 @@ while True:
         d = ds[d][2]
     else:
         g = n
-    v.add(g)
-p1 = len(v)
+    vi.add(g)
+p1 = len(vi)
 
 # p2
+p = vi
 for ri, r in enumerate(grid):
     for ci, v in enumerate(r):
-        if v == "#":
+        if v == "#" or (ri, ci) not in p:
             continue
-        g, d, v = gs, "U", set()
-        v.add((g, d))
+        g, d, vi = gs, "U", set()
+        vi.add((g, d))
         while True:
             n = (g[0] + ds[d][0], g[1] + ds[d][1])
             if n[0] < 0 or n[0] > len(grid) - 1 or n[1] < 0 or n[1] > len(grid[n[0]]) - 1:
@@ -35,10 +36,10 @@ for ri, r in enumerate(grid):
                 d = ds[d][2]
             else:
                 g = n
-            if (g, d) in v:
+            if (g, d) in vi:
                 p2 += 1
                 break
-            v.add((g, d))
+            vi.add((g, d))
 
 print("p1", p1)
 print("p2", p2)
