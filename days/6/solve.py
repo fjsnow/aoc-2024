@@ -1,7 +1,6 @@
 with open("input", "r") as f:
     grid = [l.rstrip("\n") for l in f.readlines()]
 
-
 p1, p2 = 0, 0
 
 directions = {
