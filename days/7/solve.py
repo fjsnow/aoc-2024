@@ -1,4 +1,3 @@
-
 with open("input", "r") as f:
     input = [l.rstrip("\n") for l in f.readlines()]
 
