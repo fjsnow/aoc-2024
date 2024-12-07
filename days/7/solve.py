@@ -6,10 +6,13 @@ def is_goal_possible(goal, numbers, p2):
     for n in numbers[1:]:
         next_evals = []
         for eval in evals:
-            next_evals.append(eval + n)
-            next_evals.append(eval * n)
-            if p2:
-                next_evals.append(int(f"{eval}{n}"))
+            plus, times, concat = eval + n, eval * n, int(f"{eval}{n}")
+            if plus <= goal:
+                next_evals.append(plus)
+            if times <= goal:
+                next_evals.append(times)
+            if concat <= goal and p2:
+                next_evals.append(concat)
         evals = next_evals
     return goal in evals
 
