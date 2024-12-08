@@ -11,8 +11,7 @@ total = 0
 for li, line in enumerate(input):
     # for ci, char in enumerate(line):
     #     pass
-    # delim = " "
-    # for vi, val in enumerate(line.split(delim)):
+    # for vi, val in enumerate(line.split(" ")):
     #     pass
     pass
 
