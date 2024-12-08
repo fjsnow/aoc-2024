@@ -19,7 +19,8 @@ def is_goal_possible(goal, numbers, p2):
         if times <= goal:
             stack.append((times, index + 1))
         if p2:
-            concat = current * (10 ** len(str(number))) + number
+            concat = int(str(current) + str(number))
+            #concat = current * (10 ** len(str(number))) + number
             if concat <= goal:
                 stack.append((concat, index + 1))
     return False
