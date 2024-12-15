@@ -6,44 +6,39 @@ moves = ''.join(inp[1].split("\n"))
 
 
 def get_moved_tiles(grid, player, dir):
+    to_move = []
     if dir[1] != 0:  # horizontal
-        to_move = []
         curr = player
-        while True:
-            if grid[curr[0]][curr[1]] == ".":
-                return to_move
-            elif grid[curr[0]][curr[1]] == "#":
+        while grid[curr[0]][curr[1]] != ".":
+            if grid[curr[0]][curr[1]] == "#":
                 return []
-
             to_move.append(curr)
             curr = (curr[0] + d[0], curr[1] + d[1])
     else:  # vertical
-        to_move = []
         processing = [player]
-        while True:
-            if len(processing) == 0:
-                return to_move
-            if len(processing) > 0:
-                curr = processing.pop()
-                if grid[curr[0]][curr[1]] == "#":
+        while len(processing) > 0:
+            curr = processing.pop()
+            if grid[curr[0]][curr[1]] == "#":
+                return []
+            elif grid[curr[0]][curr[1]] == ".":
+                continue
+            to_move.append(curr)
+            processing.append((curr[0] + d[0], curr[1] + d[1]))
+            if grid[curr[0]][curr[1]] == "[":
+                if grid[curr[0]][curr[1] + 1] == "#":
                     return []
-                elif grid[curr[0]][curr[1]] == ".":
-                    continue
-                to_move.append(curr)
-                processing.append((curr[0] + d[0], curr[1] + d[1]))
-                if grid[curr[0]][curr[1]] == "[":
-                    if grid[curr[0]][curr[1] + 1] == "#":
-                        return []
-                    to_move.append((curr[0], curr[1] + 1))
-                    processing.append(
-                        (curr[0] + d[0], curr[1] + d[1] + 1))
-                if grid[curr[0]][curr[1]] == "]":
-                    processing.append((curr[0], curr[1] - 1))
-                    if grid[curr[0]][curr[1] - 1] == "#":
-                        return []
-                    to_move.append((curr[0], curr[1] - 1))
-                    processing.append(
-                        (curr[0] + d[0], curr[1] + d[1] - 1))
+                to_move.append((curr[0], curr[1] + 1))
+                processing.append(
+                    (curr[0] + d[0], curr[1] + d[1] + 1))
+            if grid[curr[0]][curr[1]] == "]":
+                processing.append((curr[0], curr[1] - 1))
+                if grid[curr[0]][curr[1] - 1] == "#":
+                    return []
+                to_move.append((curr[0], curr[1] - 1))
+                processing.append(
+                    (curr[0] + d[0], curr[1] + d[1] - 1))
+
+    return to_move
 
 
 stretched = []
@@ -78,6 +73,7 @@ for move in moves:
             player_moved = True
 
         stretched[tile[0] + d[0]][tile[1] + d[1]] = original[tile[0]][tile[1]]
+
         if (tile[0] - d[0], tile[1] - d[1]) not in tiles:
             stretched[tile[0]][tile[1]] = "."
 
