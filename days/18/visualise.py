@@ -35,7 +35,7 @@ def clear(xys, exys=[]):
 
 
 def djikstra(start, corrupted, draw):
-    q = [(0, start, [])]
+    q = [(0, start, [start])]
     heapq.heapify(q)
     b = set()
     ldraw = []
@@ -61,9 +61,9 @@ def djikstra(start, corrupted, draw):
                 continue
             b.add((nx, ny))
 
-            h = h.copy()
-            h.append((nx, ny))
-            heapq.heappush(q, (c+1, (nx, ny), h))
+            hn = h.copy()
+            hn.append((nx, ny))
+            heapq.heappush(q, (c+1, (nx, ny), hn))
     return b, None
 
 
