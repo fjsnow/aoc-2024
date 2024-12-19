@@ -6,7 +6,6 @@ with open("input", "r") as f:
 patterns = inp[0].split(", ")
 
 
-@cache
 def solve(towel, p2):
     if len(towel) == 0:
         return 1
@@ -16,10 +15,9 @@ def solve(towel, p2):
             n = solve(towel[len(p):], p2)
             if p2:
                 c += n if p2 else (1 if n == 1 else 0)
-            else:
-                if n == 1:
-                    c += 1
-                    break
+            elif n == 1:
+                c += 1
+                break
     return c
 
 
