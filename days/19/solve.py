@@ -6,6 +6,7 @@ with open("input", "r") as f:
 patterns = inp[0].split(", ")
 
 
+@cache
 def solve(towel, p2):
     if len(towel) == 0:
         return 1
