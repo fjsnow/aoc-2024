@@ -20,13 +20,12 @@ while q:
         q.append((nx, ny))
 
 p1, p2 = 0, 0
-cheats = 20
 
 for (x, y), d in dist.items():
     for i in range(-20, 21):
         for j in range(-20, 21):
             cd = abs(i) + abs(j)
-            if cd > cheats:
+            if cd > 20:
                 continue
             dx, dy = x+i, y+j
             if (dx, dy) in dist:
