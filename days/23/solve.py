@@ -11,10 +11,10 @@ for li, line in enumerate(inp):
 
 # p1
 interconnected = set()
-for a, ac in connections.items():
-    for b, bc, in connections.items():
-        for c, cc in connections.items():
-            if not (a in bc) or not (a in cc) or not (b in cc):
+for a in connections.keys():
+    for b in connections[a]:
+        for c in connections[b]:
+            if a not in connections[c]:
                 continue
             if 't' not in a[0] + b[0] + c[0]:
                 continue
