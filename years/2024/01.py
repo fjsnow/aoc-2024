@@ -1,3 +1,12 @@
+def meta():
+    return {
+        "title": "Historian Hysteria",
+        "solutions": {
+            "a": 2970687,
+            "b": 23963899
+        }
+    }
+
 def parse(input):
     l, r = [], []
     for line in input.split("\n"):
@@ -9,10 +18,8 @@ def parse(input):
     r.sort()
     return (l, r)
 
-
-def p1(input):
+def a(input):
     return sum(abs(le - re) for le, re in zip(input[0], input[1]))
 
-
-def p2(input):
+def b(input):
     return sum(e * input[1].count(e) for e in input[0])
